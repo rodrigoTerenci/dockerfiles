@@ -1,0 +1,74 @@
+*{
+    padding: 0;
+    margin: 0%;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    background-color: rgb(10, 71, 71);
+    display: flex;
+}
+.memory-game{
+    margin: auto;
+    height: 640px;
+    width: 640px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rosybrown;
+    perspective: 1000px;/*cria perspectiva 3d EIXO 'Z'*/
+}
+
+.card{
+    /***********************************************************************************************
+    *   Aqui escolho quantos elementos terão na vertical-height e na horizontal-width              *
+    *   tamanho total, ou seja, 100% dividido pela quantidade de elementos que desejo. 100/qnt_ele *
+    ************************************************************************************************/
+    height: calc(33,33% - 10px);/*100/3 - pixel_das_margens_horizontais*/
+    width: calc(25% - 10px);/*100/4 - pixel_das_margens_verticais*/
+    margin: 5px;
+    position: relative;
+    box-shadow: 1px 1px 1px rgb(1, 1, 1);
+    cursor: pointer;
+    transform: scale(1);
+    transform: tranform .9s;
+    transform-style: preserve-3d;/*Preserva a perspectiva 3d tira achatamento da imagem*/
+}
+.card:active{
+    transform: scale(0.97);
+    transition: transform .3s;
+}
+.card-front,
+.card-back{
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    position: absolute;
+    border-radius: 5px;
+    background-color: #fff;
+    backface-visibility: hidden;
+}
+.card-front{
+    transform: rotateY(180deg);
+    transition: transform .9s;
+}
+/*FLIP CAR ANIMATION*/
+.card.flip{
+    transform: rotateY(180deg);
+
+}
+
+@media(max-width:320px){
+    .memory-game{
+        margin: auto;
+        height: 600px;
+        width: 300px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .card{
+        margin: 5px;
+        width: 90px;
+        height:130px;
+        transform:scale(.3);
+    }
+}
